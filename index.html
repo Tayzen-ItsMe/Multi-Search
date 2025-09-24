@@ -1,128 +1,120 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Multi-Search Shop</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    /* Reset & global */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #89f7fe, #66a6ff);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    /* Container */
-    .container {
-      background: white;
-      padding: 30px 40px;
-      border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-      max-width: 600px;
-      width: 100%;
-      text-align: center;
-    }
-
-    h1 {
-      color: #333;
-      margin-bottom: 25px;
-      font-size: 2rem;
-    }
-
-    /* Input & select */
-    input, select {
-      width: 100%;
-      padding: 12px 15px;
-      margin: 10px 0;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-      outline: none;
-      transition: 0.3s;
-    }
-
-    input:focus, select:focus {
-      border-color: #66a6ff;
-      box-shadow: 0 0 5px #66a6ff;
-    }
-
-    /* Button */
-    button {
-      width: 100%;
-      padding: 15px;
-      margin-top: 15px;
-      background: linear-gradient(90deg, #ff8a00, #e52e71);
-      color: white;
-      font-size: 1.2rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
-
-    /* Footer text */
-    .footer {
-      margin-top: 20px;
-      font-size: 0.85rem;
-      color: #555;
-    }
-
-    /* Responsive */
-    @media(max-width: 500px){
-      .container {
-        padding: 20px;
-      }
-      h1 { font-size: 1.5rem; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moteur de Recherche Europe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #fff;
+        }
+        h1 {
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+        }
+        .search-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        input[type="text"] {
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            width: 300px;
+        }
+        button {
+            padding: 15px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            background-color: #ff6a00;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ff8c42;
+        }
+        .results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            width: 90%;
+            max-width: 1000px;
+        }
+        .results a {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .results a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🔍 Multi-Search Shop</h1>
-    <input type="text" id="query" placeholder="Tape ta recherche">
-    <select id="siteSelect">
-      <!-- Exemple de sites d'achat français et internationaux -->
-      <option value="https://www.amazon.fr/s?k=">Amazon</option>
-      <option value="https://www.ebay.fr/sch/i.html?_nkw=">eBay</option>
-      <option value="https://www.cdiscount.com/search/10/">Cdiscount</option>
-      <option value="https://www.fnac.com/SearchResult/ResultList.aspx?Search=">Fnac</option>
-      <option value="https://www.aliexpress.com/wholesale?SearchText=">AliExpress</option>
-      <option value="https://www.rakuten.fr/search/">Rakuten</option>
-      <option value="https://www.wish.com/search/">Wish</option>
-      <option value="https://www.manomano.fr/search?text=">ManoMano</option>
-      <option value="https://www.leboncoin.fr/recherche/?text=">Leboncoin</option>
-      <option value="https://www.backmarket.fr/search?slug=">BackMarket</option>
-      <option value="https://www.decathlon.fr/search?Ntt=">Decathlon</option>
-      <option value="https://www.leroymerlin.fr/recherche/?q=">Leroy Merlin</option>
-      <option value="https://www.zalando.fr/catalog/?q=">Zalando</option>
-      <option value="https://www.vinted.fr/catalog?search_text=">Vinted</option>
-    </select>
-    <button id="searchBtn">Lancer la recherche</button>
-    <div class="footer">Site créé avec ❤️ pour rechercher rapidement sur vos sites préférés</div>
-  </div>
+    <h1>Moteur de Recherche Europe</h1>
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Tape ton mot clé ici">
+        <button onclick="searchAll()">Rechercher</button>
+    </div>
+    <div class="results" id="results"></div>
 
-  <script>
-    document.getElementById('searchBtn').addEventListener('click', function() {
-      const query = encodeURIComponent(document.getElementById('query').value);
-      const base = document.getElementById('siteSelect').value;
-      if (query.trim() === '') {
-        alert('Merci de saisir une recherche.');
-        return;
-      }
-      const url = base + query;
-      window.open(url, '_blank');
-    });
-  </script>
+    <script>
+        function searchAll() {
+            const query = document.getElementById('search').value.trim();
+            if (!query) {
+                alert("Merci de taper un mot clé !");
+                return;
+            }
+
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = "";
+
+            const searchEngines = [
+                { name: "Google FR", url: "https://www.google.fr/search?q=" },
+                { name: "Bing", url: "https://www.bing.com/search?q=" },
+                { name: "DuckDuckGo", url: "https://duckduckgo.com/?q=" },
+                { name: "Qwant", url: "https://www.qwant.com/?q=" },
+                { name: "Startpage", url: "https://www.startpage.com/sp/search?q=" },
+                { name: "Wikipedia FR", url: "https://fr.wikipedia.org/w/index.php?search=" },
+                { name: "YouTube", url: "https://www.youtube.com/results?search_query=" },
+                { name: "Amazon FR", url: "https://www.amazon.fr/s?k=" },
+                { name: "Le Monde", url: "https://www.lemonde.fr/recherche/?search=" },
+                { name: "BBC", url: "https://www.bbc.co.uk/search?q=" },
+                { name: "Spiegel", url: "https://www.spiegel.de/suche/?suchbegriff=" },
+                { name: "El Pais", url: "https://elpais.com/buscador/?q=" },
+                { name: "Libération", url: "https://www.liberation.fr/recherche/?query=" },
+                { name: "The Guardian", url: "https://www.theguardian.com/search?q=" },
+                { name: "Stack Overflow", url: "https://stackoverflow.com/search?q=" },
+                { name: "GitHub", url: "https://github.com/search?q=" }
+            ];
+
+            searchEngines.forEach(engine => {
+                const link = document.createElement("a");
+                link.href = engine.url + encodeURIComponent(query);
+                link.target = "_blank";
+                link.textContent = "Recherche sur " + engine.name;
+                resultsDiv.appendChild(link);
+            });
+        }
+    </script>
 </body>
 </html>
