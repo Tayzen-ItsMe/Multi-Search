@@ -1,65 +1,116 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Recherche Multi-Sites</title>
+  <meta charset="UTF-8">
+  <title>Multi-Search Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    input, select, button { font-size: 1rem; margin: 5px; }
+    /* Reset & global */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #89f7fe, #66a6ff);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    /* Container */
+    .container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 25px;
+      font-size: 2rem;
+    }
+
+    /* Input & select */
+    input, select {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus, select:focus {
+      border-color: #66a6ff;
+      box-shadow: 0 0 5px #66a6ff;
+    }
+
+    /* Button */
+    button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 15px;
+      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Footer text */
+    .footer {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    /* Responsive */
+    @media(max-width: 500px){
+      .container {
+        padding: 20px;
+      }
+      h1 { font-size: 1.5rem; }
+    }
   </style>
 </head>
 <body>
-  <h1>Recherche Multi-Sites</h1>
-  <input type="text" id="query" placeholder="Tape ta recherche" />
-  <select id="siteSelect">
-    <!-- Généraux -->
-    <option value="https://www.amazon.fr/s?k=">Amazon</option>
-    <option value="https://www.ebay.fr/sch/i.html?_nkw=">eBay</option>
-    <option value="https://www.cdiscount.com/search/10/">Cdiscount</option>
-    <option value="https://www.fnac.com/SearchResult/ResultList.aspx?Search=">Fnac</option>
-    <option value="https://www.aliexpress.com/wholesale?SearchText=">AliExpress</option>
-    <option value="https://www.rakuten.fr/search/">Rakuten</option>
-    <option value="https://www.wish.com/search/">Wish</option>
-    <option value="https://www.manomano.fr/search?text=">ManoMano</option>
-    <option value="https://www.conforama.fr/recherche?q=">Conforama</option>
-    <option value="https://www.laredoute.fr/ppdp/search.aspx?search=">La Redoute</option>
-    <option value="https://www.carrefour.fr/s?q=">Carrefour</option>
-    <option value="https://www.auchan.fr/recherche?text=">Auchan</option>
-    <option value="https://www.boulanger.com/resultats?tr=">Boulanger</option>
-    <option value="https://www.darty.com/nav/recherche?search=">Darty</option>
-    <option value="https://www.decathlon.fr/search?Ntt=">Decathlon</option>
-    <option value="https://www.leroymerlin.fr/recherche/?q=">Leroy Merlin</option>
-    <option value="https://www.castorama.fr/recherche?text=">Castorama</option>
-
-    <!-- Mode & accessoires -->
-    <option value="https://www.zalando.fr/catalog/?q=">Zalando</option>
-    <option value="https://www.vinted.fr/catalog?search_text=">Vinted</option>
-    <option value="https://www.shein.com/pdsearch/">Shein</option>
-    <option value="https://www.asos.com/search/?q=">ASOS</option>
-    <option value="https://www.etam.com/search?q=">Etam</option>
-    <option value="https://www.nike.com/fr/w?q=">Nike</option>
-    <option value="https://www.adidas.fr/search?q=">Adidas</option>
-    <option value="https://www.hm.com/fr/search-results?q=">H&M</option>
-    <option value="https://www.lacoste.com/fr/search?q=">Lacoste</option>
-    <option value="https://www.galerieslafayette.com/search/result/?q=">Galeries Lafayette</option>
-    <option value="https://www.printemps.com/fr/fr/recherche?q=">Printemps</option>
-
-    <!-- High-tech & gaming -->
-    <option value="https://www.materiel.net/search/?q=">Materiel.net</option>
-    <option value="https://www.ldlc.com/recherche/?term=">LDLC</option>
-    <option value="https://www.rueducommerce.fr/recherche?q=">Rue du Commerce</option>
-    <option value="https://www.topachat.com/pages/recherche.php?mc=">TopAchat</option>
-    <option value="https://store.steampowered.com/search/?term=">Steam</option>
-    <option value="https://www.instant-gaming.com/fr/rechercher/?query=">Instant Gaming</option>
-    <option value="https://www.g2a.com/search?query=">G2A</option>
-    <option value="https://www.greenmangaming.com/search/?query=">GreenManGaming</option>
-
-    <!-- Occasion / Reconditionné -->
-    <option value="https://www.leboncoin.fr/recherche/?text=">Leboncoin</option>
-    <option value="https://www.backmarket.fr/search?slug=">BackMarket</option>
-    <option value="https://fr.shopping.rakuten.com/search/">Rakuten Occasion</option>
-  </select>
-  <button id="searchBtn">Rechercher</button>
+  <div class="container">
+    <h1>🔍 Multi-Search Shop</h1>
+    <input type="text" id="query" placeholder="Tape ta recherche">
+    <select id="siteSelect">
+      <!-- Exemple de sites d'achat français et internationaux -->
+      <option value="https://www.amazon.fr/s?k=">Amazon</option>
+      <option value="https://www.ebay.fr/sch/i.html?_nkw=">eBay</option>
+      <option value="https://www.cdiscount.com/search/10/">Cdiscount</option>
+      <option value="https://www.fnac.com/SearchResult/ResultList.aspx?Search=">Fnac</option>
+      <option value="https://www.aliexpress.com/wholesale?SearchText=">AliExpress</option>
+      <option value="https://www.rakuten.fr/search/">Rakuten</option>
+      <option value="https://www.wish.com/search/">Wish</option>
+      <option value="https://www.manomano.fr/search?text=">ManoMano</option>
+      <option value="https://www.leboncoin.fr/recherche/?text=">Leboncoin</option>
+      <option value="https://www.backmarket.fr/search?slug=">BackMarket</option>
+      <option value="https://www.decathlon.fr/search?Ntt=">Decathlon</option>
+      <option value="https://www.leroymerlin.fr/recherche/?q=">Leroy Merlin</option>
+      <option value="https://www.zalando.fr/catalog/?q=">Zalando</option>
+      <option value="https://www.vinted.fr/catalog?search_text=">Vinted</option>
+    </select>
+    <button id="searchBtn">Lancer la recherche</button>
+    <div class="footer">Site créé avec ❤️ pour rechercher rapidement sur vos sites préférés</div>
+  </div>
 
   <script>
     document.getElementById('searchBtn').addEventListener('click', function() {
