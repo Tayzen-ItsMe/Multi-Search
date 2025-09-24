@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moteur de Recherche Europe</title>
+    <title>Moteur de Recherche Europe - Version Étendue</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(to right, #6a11cb, #2575fc);
+            background: linear-gradient(to right, #1e3c72, #2a5298);
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             min-height: 100vh;
             color: #fff;
         }
         h1 {
-            margin-bottom: 20px;
+            margin: 30px 0 20px;
+            text-align: center;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
         }
         .search-container {
@@ -32,7 +33,7 @@
             font-size: 18px;
             border: none;
             border-radius: 8px;
-            width: 300px;
+            width: 320px;
         }
         button {
             padding: 15px 25px;
@@ -52,7 +53,8 @@
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 15px;
             width: 90%;
-            max-width: 1000px;
+            max-width: 1200px;
+            margin-bottom: 50px;
         }
         .results a {
             background-color: rgba(255, 255, 255, 0.1);
@@ -61,16 +63,17 @@
             text-align: center;
             text-decoration: none;
             color: #fff;
+            font-weight: bold;
             transition: background-color 0.3s, transform 0.2s;
         }
         .results a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.25);
             transform: translateY(-3px);
         }
     </style>
 </head>
 <body>
-    <h1>Moteur de Recherche Europe</h1>
+    <h1>Moteur de Recherche Europe - Version Étendue</h1>
     <div class="search-container">
         <input type="text" id="search" placeholder="Tape ton mot clé ici">
         <button onclick="searchAll()">Rechercher</button>
@@ -89,22 +92,58 @@
             resultsDiv.innerHTML = "";
 
             const searchEngines = [
+                // Moteurs de recherche
                 { name: "Google FR", url: "https://www.google.fr/search?q=" },
+                { name: "Google DE", url: "https://www.google.de/search?q=" },
                 { name: "Bing", url: "https://www.bing.com/search?q=" },
                 { name: "DuckDuckGo", url: "https://duckduckgo.com/?q=" },
                 { name: "Qwant", url: "https://www.qwant.com/?q=" },
                 { name: "Startpage", url: "https://www.startpage.com/sp/search?q=" },
-                { name: "Wikipedia FR", url: "https://fr.wikipedia.org/w/index.php?search=" },
-                { name: "YouTube", url: "https://www.youtube.com/results?search_query=" },
-                { name: "Amazon FR", url: "https://www.amazon.fr/s?k=" },
+                { name: "Ecosia", url: "https://www.ecosia.org/search?q=" },
+
+                // Actualités
                 { name: "Le Monde", url: "https://www.lemonde.fr/recherche/?search=" },
-                { name: "BBC", url: "https://www.bbc.co.uk/search?q=" },
-                { name: "Spiegel", url: "https://www.spiegel.de/suche/?suchbegriff=" },
-                { name: "El Pais", url: "https://elpais.com/buscador/?q=" },
                 { name: "Libération", url: "https://www.liberation.fr/recherche/?query=" },
+                { name: "BBC", url: "https://www.bbc.co.uk/search?q=" },
                 { name: "The Guardian", url: "https://www.theguardian.com/search?q=" },
+                { name: "Spiegel", url: "https://www.spiegel.de/suche/?suchbegriff=" },
+                { name: "El País", url: "https://elpais.com/buscador/?q=" },
+                { name: "La Repubblica", url: "https://www.repubblica.it/ricerca/?query=" },
+
+                // Vidéo / médias
+                { name: "YouTube", url: "https://www.youtube.com/results?search_query=" },
+                { name: "Dailymotion", url: "https://www.dailymotion.com/search/" },
+                { name: "Vimeo", url: "https://vimeo.com/search?q=" },
+                { name: "Twitch", url: "https://www.twitch.tv/search?term=" },
+
+                // E-commerce
+                { name: "Amazon FR", url: "https://www.amazon.fr/s?k=" },
+                { name: "Amazon DE", url: "https://www.amazon.de/s?k=" },
+                { name: "eBay", url: "https://www.ebay.fr/sch/i.html?_nkw=" },
+                { name: "Zalando", url: "https://www.zalando.fr/catalog/?q=" },
+                { name: "Fnac", url: "https://www.fnac.com/SearchResult/ResultList.aspx?SCat=0&Search=" },
+                { name: "Otto", url: "https://www.otto.de/suche/?q=" },
+                { name: "Carrefour FR", url: "https://www.carrefour.fr/catalogue?q=" },
+
+                // Tech / code
                 { name: "Stack Overflow", url: "https://stackoverflow.com/search?q=" },
-                { name: "GitHub", url: "https://github.com/search?q=" }
+                { name: "GitHub", url: "https://github.com/search?q=" },
+                { name: "GitLab", url: "https://gitlab.com/search?search=" },
+
+                // Encyclopédies / info
+                { name: "Wikipedia FR", url: "https://fr.wikipedia.org/w/index.php?search=" },
+                { name: "Wikipedia EN", url: "https://en.wikipedia.org/w/index.php?search=" },
+                { name: "Wikipedia DE", url: "https://de.wikipedia.org/w/index.php?search=" },
+                { name: "Wikipedia ES", url: "https://es.wikipedia.org/w/index.php?search=" },
+                { name: "Wikidata", url: "https://www.wikidata.org/w/index.php?search=" },
+
+                // Autres sites utiles
+                { name: "Tripadvisor", url: "https://www.tripadvisor.fr/Search?q=" },
+                { name: "Booking.com", url: "https://www.booking.com/searchresults.fr.html?ss=" },
+                { name: "Weather.com", url: "https://weather.com/fr-FR/recherche?q=" },
+                { name: "Indeed", url: "https://www.indeed.fr/emplois?q=" },
+                { name: "LinkedIn", url: "https://www.linkedin.com/search/results/all/?keywords=" },
+                { name: "Pinterest", url: "https://www.pinterest.fr/search/pins/?q=" }
             ];
 
             searchEngines.forEach(engine => {
