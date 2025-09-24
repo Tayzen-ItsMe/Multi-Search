@@ -1,120 +1,77 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Recherche Multi-Sites</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f5f5f5;
-    }
-    .container {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      text-align: center;
-      width: 500px;
-    }
-    input {
-      width: 80%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      gap: 10px;
-      margin-top: 15px;
-    }
-    button {
-      padding: 10px;
-      border: none;
-      border-radius: 8px;
-      background: #0077ff;
-      color: white;
-      cursor: pointer;
-      font-size: 14px;
-      transition: 0.2s;
-    }
-    button:hover {
-      background: #005fcc;
-    }
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    input, select, button { font-size: 1rem; margin: 5px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>🔍 Recherche Multi-Sites</h2>
-    <input type="text" id="query" placeholder="Tape ton mot-clé...">
-    <div class="buttons">
-      <button onclick="search('amazon')">Amazon</button>
-      <button onclick="search('leboncoin')">Leboncoin</button>
-      <button onclick="search('ebay')">eBay</button>
-      <button onclick="search('fnac')">Fnac</button>
-      <button onclick="search('cdiscount')">Cdiscount</button>
-      <button onclick="search('aliexpress')">AliExpress</button>
-      <button onclick="search('rakuten')">Rakuten</button>
-      <button onclick="search('wish')">Wish</button>
-      <button onclick="search('backmarket')">BackMarket</button>
-      <button onclick="search('manomano')">ManoMano</button>
-      <button onclick="search('vinted')">Vinted</button>
-      <button onclick="search('zalando')">Zalando</button>
-    </div>
-  </div>
+  <h1>Recherche Multi-Sites</h1>
+  <input type="text" id="query" placeholder="Tape ta recherche" />
+  <select id="siteSelect">
+    <!-- Généraux -->
+    <option value="https://www.amazon.fr/s?k=">Amazon</option>
+    <option value="https://www.ebay.fr/sch/i.html?_nkw=">eBay</option>
+    <option value="https://www.cdiscount.com/search/10/">Cdiscount</option>
+    <option value="https://www.fnac.com/SearchResult/ResultList.aspx?Search=">Fnac</option>
+    <option value="https://www.aliexpress.com/wholesale?SearchText=">AliExpress</option>
+    <option value="https://www.rakuten.fr/search/">Rakuten</option>
+    <option value="https://www.wish.com/search/">Wish</option>
+    <option value="https://www.manomano.fr/search?text=">ManoMano</option>
+    <option value="https://www.conforama.fr/recherche?q=">Conforama</option>
+    <option value="https://www.laredoute.fr/ppdp/search.aspx?search=">La Redoute</option>
+    <option value="https://www.carrefour.fr/s?q=">Carrefour</option>
+    <option value="https://www.auchan.fr/recherche?text=">Auchan</option>
+    <option value="https://www.boulanger.com/resultats?tr=">Boulanger</option>
+    <option value="https://www.darty.com/nav/recherche?search=">Darty</option>
+    <option value="https://www.decathlon.fr/search?Ntt=">Decathlon</option>
+    <option value="https://www.leroymerlin.fr/recherche/?q=">Leroy Merlin</option>
+    <option value="https://www.castorama.fr/recherche?text=">Castorama</option>
+
+    <!-- Mode & accessoires -->
+    <option value="https://www.zalando.fr/catalog/?q=">Zalando</option>
+    <option value="https://www.vinted.fr/catalog?search_text=">Vinted</option>
+    <option value="https://www.shein.com/pdsearch/">Shein</option>
+    <option value="https://www.asos.com/search/?q=">ASOS</option>
+    <option value="https://www.etam.com/search?q=">Etam</option>
+    <option value="https://www.nike.com/fr/w?q=">Nike</option>
+    <option value="https://www.adidas.fr/search?q=">Adidas</option>
+    <option value="https://www.hm.com/fr/search-results?q=">H&M</option>
+    <option value="https://www.lacoste.com/fr/search?q=">Lacoste</option>
+    <option value="https://www.galerieslafayette.com/search/result/?q=">Galeries Lafayette</option>
+    <option value="https://www.printemps.com/fr/fr/recherche?q=">Printemps</option>
+
+    <!-- High-tech & gaming -->
+    <option value="https://www.materiel.net/search/?q=">Materiel.net</option>
+    <option value="https://www.ldlc.com/recherche/?term=">LDLC</option>
+    <option value="https://www.rueducommerce.fr/recherche?q=">Rue du Commerce</option>
+    <option value="https://www.topachat.com/pages/recherche.php?mc=">TopAchat</option>
+    <option value="https://store.steampowered.com/search/?term=">Steam</option>
+    <option value="https://www.instant-gaming.com/fr/rechercher/?query=">Instant Gaming</option>
+    <option value="https://www.g2a.com/search?query=">G2A</option>
+    <option value="https://www.greenmangaming.com/search/?query=">GreenManGaming</option>
+
+    <!-- Occasion / Reconditionné -->
+    <option value="https://www.leboncoin.fr/recherche/?text=">Leboncoin</option>
+    <option value="https://www.backmarket.fr/search?slug=">BackMarket</option>
+    <option value="https://fr.shopping.rakuten.com/search/">Rakuten Occasion</option>
+  </select>
+  <button id="searchBtn">Rechercher</button>
 
   <script>
-    function search(site) {
-      const query = document.getElementById("query").value.trim();
-      if (!query) return alert("Écris un mot-clé !");
-      
-      let url = "";
-      switch(site) {
-        case "amazon":
-          url = "https://www.amazon.fr/s?k=" + encodeURIComponent(query);
-          break;
-        case "leboncoin":
-          url = "https://www.leboncoin.fr/recherche?text=" + encodeURIComponent(query);
-          break;
-        case "ebay":
-          url = "https://www.ebay.fr/sch/i.html?_nkw=" + encodeURIComponent(query);
-          break;
-        case "fnac":
-          url = "https://www.fnac.com/SearchResult/ResultList.aspx?Search=" + encodeURIComponent(query);
-          break;
-        case "cdiscount":
-          url = "https://www.cdiscount.com/search/10/" + encodeURIComponent(query) + ".html";
-          break;
-        case "aliexpress":
-          url = "https://fr.aliexpress.com/wholesale?SearchText=" + encodeURIComponent(query);
-          break;
-        case "rakuten":
-          url = "https://fr.shopping.rakuten.com/s/?k=" + encodeURIComponent(query);
-          break;
-        case "wish":
-          url = "https://www.wish.com/search/" + encodeURIComponent(query);
-          break;
-        case "backmarket":
-          url = "https://www.backmarket.fr/search?q=" + encodeURIComponent(query);
-          break;
-        case "manomano":
-          url = "https://www.manomano.fr/recherche/" + encodeURIComponent(query);
-          break;
-        case "vinted":
-          url = "https://www.vinted.fr/catalog?search_text=" + encodeURIComponent(query);
-          break;
-        case "zalando":
-          url = "https://www.zalando.fr/catalogue/?q=" + encodeURIComponent(query);
-          break;
+    document.getElementById('searchBtn').addEventListener('click', function() {
+      const query = encodeURIComponent(document.getElementById('query').value);
+      const base = document.getElementById('siteSelect').value;
+      if (query.trim() === '') {
+        alert('Merci de saisir une recherche.');
+        return;
       }
-      window.open(url, "_blank");
-    }
+      const url = base + query;
+      window.open(url, '_blank');
+    });
   </script>
 </body>
 </html>
